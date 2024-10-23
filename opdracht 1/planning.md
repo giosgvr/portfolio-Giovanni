@@ -110,6 +110,19 @@ Dit project zal worden ontwikkeld met de volgende technieken:
   - Alle tracks van het album worden weergegeven.
   - Extra informatie zoals duur en populariteit is zichtbaar.
 
+### 6. Festivaloverzicht incl. artiesten
+- **Prioriteit:** laag
+- **Tijdsindicatie:** 4 uur
+- **Wie:** Als gebruiker van de Festivalinfo applicatie,
+- **Wat:** Wil ik artiesten kunnen linken aan een festival,
+- **Waarom:** overzichtelijk kan zien welke artiest waar op moet treden.
+- **Realistisch:** Ja, dit is een kwestie van een aantal extra pagina's maken + een database sectie.
+- **Definitie van klaar (DoD):**
+  - Er is een invoerveld voor festivallen.
+  - Er is de mogelijkheid om artiesten toe te voegen aan een festival.
+  - Er is een aparte pagina voor festiavllen op een rij.
+  - bij klikken op de festival staan alle gelinkte artiesten.
+
 ## Planning van dit project
 
 ---
@@ -120,8 +133,8 @@ Dit project zal worden gerealiseerd in 4 sprints van elk 1 week.
 |----------|----------------------------------------------------------|
 | Sprint 1 | US-1 (Spotify URI Invoer) |
 | Sprint 2 | US-2 (Artiestinformatie Ophalen), US-3 (Database Opslag) |
-| Sprint 3 | US-4 (Artiestoverzicht Weergeven) |
-| Sprint 4 | US-5 (Detailweergave Album/Single), Testen en Optimalisatie |
+| Sprint 3 | US-4 (Artiestoverzicht Weergeven), US-5 (Detailweergave Album/Single)|
+| Sprint 4 | US-6 (Festivaloverzicht incl. artiesten), Testen en Optimalisatie |
 
 ## Voortgang bewaken
 
