@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $albumObj = new Album($db);
             foreach ($albums_data['items'] as $album) {
-                if ($album['album_type'] === 'album') {
+                if ($album['album_type'] === 'album') { 
                     $albumName = $album['name'];
                     $albumSpotifyUrl = $album['external_urls']['spotify'];
                     $albumNrTracks = $album['total_tracks'];
