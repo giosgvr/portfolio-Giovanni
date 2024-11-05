@@ -1,4 +1,5 @@
 <?php
+
 include "nav.inc.php";
 include "../db_connect.php";
 include "../artist_class.php";
@@ -12,6 +13,7 @@ $countries = $artist->getartistcountries();
 
 <head>
     <title>Voeg Artiest toe</title>
+    <link rel="stylesheet" href="selchange_artist.css">
 </head>
 
 <body>
@@ -25,14 +27,14 @@ $countries = $artist->getartistcountries();
         <br>
         <label for="artist_genre_id">Genre:</label>
         <select name="artist_genre_id" required>
-            <?php foreach ($genres as $genre): ?>
+            <?php foreach ($genres as $genre) : ?>
                 <option value="<?php echo $genre['genre_id']; ?>"><?php echo $genre['genre_name']; ?></option>
             <?php endforeach; ?>
         </select>
         <label for="artist_country_id">land:</label>
         <select name="artist_country_id" required>
-            <?php foreach ($countries as $country): ?>
-                <option value="<?php echo $country['country_id']; ?>"><?php echo $country['country_name']; ?></option>
+            <?php foreach ($countries as $country) : ?>
+                <option value="<?php echo $country['Country_ID']; ?>"><?php echo $country['Country_Name']; ?></option>
             <?php endforeach; ?>
         </select>
         <br>

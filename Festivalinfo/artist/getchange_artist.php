@@ -41,6 +41,7 @@ $albums_data = $albumObj->getalbumsbyartistid($artist_id);
 
 <head>
     <title>Artiest Bewerken</title>
+    <link rel="stylesheet" href="selchange_artist.css">
 </head>
 
 <body>
@@ -64,7 +65,7 @@ $albums_data = $albumObj->getalbumsbyartistid($artist_id);
         <label for="artist_country_id">land:</label>
         <select name="artist_country_id" required>
             <?php foreach ($countries as $country) : ?>
-                <option value="<?php echo $country['country_id']; ?>" <?php echo ($country['country_id'] == $row["artist_country_id"]) ? 'selected' : ''; ?>><?php echo $country['country_name']; ?></option>
+                <option value="<?php echo $country['Country_ID']; ?>" <?php echo ($country['Country_ID'] == $row["artist_country_id"]) ? 'selected' : ''; ?>><?php echo $country['Country_Name']; ?></option>
             <?php endforeach; ?>
         </select>
         <label for="artist_spotify_id">Spotify Uri:</label>

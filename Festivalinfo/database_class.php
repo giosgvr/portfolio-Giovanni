@@ -22,7 +22,8 @@ class PdoDatabase
         $this->pass = $pass;
         $this->dbname = $dbname;
 
-        $dsn = "pgsql:host=" . $host . ";dbname=" . $dbname . ";";
+        // Voeg charset toe aan DSN
+        $dsn = "mysql:host=" . $host . ";dbname=" . $dbname . ";charset=utf8";
 
         $options = array(
             PDO::ATTR_PERSISTENT => true,
@@ -33,7 +34,8 @@ class PdoDatabase
             $this->dbh = new PDO($dsn, $user, $pass, $options);
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
-            echo $this->error;
+            error_log("Database connection failed: " . $this->error);
+            echo "Database connection error: " . $this->error;
         }
     }
 

@@ -24,7 +24,11 @@ class Album
         $this->db->bind(":album_nr_tracks", $albumNrTracks);
         $this->db->bind(":album_url_cover", $albumUrlCover);
 
-        $this->db->execute();
+        try {
+            $this->db->execute();
+        } catch (Exception $e) {
+            echo "Fout bij het invoegen van album: " . $e->getMessage();
+        }
     }
 
     public function getalbumsbyartistid($artistId)
