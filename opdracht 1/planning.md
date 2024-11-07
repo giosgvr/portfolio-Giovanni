@@ -136,6 +136,6 @@ Dit project zal worden gerealiseerd in 4 sprints van elk 1 week.
 | Sprint 3 | US-4 (Artiestoverzicht Weergeven), US-5 (Detailweergave Album/Single)|
 | Sprint 4 | US-6 (Festivaloverzicht incl. artiesten), Testen en Optimalisatie |
 
-## Voortgang bewaken
+## Voortgang bewaken 
 
 
