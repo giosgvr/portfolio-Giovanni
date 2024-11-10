@@ -120,14 +120,14 @@ Dit project zal worden ontwikkeld met de volgende technieken:
 - **Definitie van klaar (DoD):**
   - Er is een invoerveld voor festivallen.
   - Er is de mogelijkheid om artiesten toe te voegen aan een festival.
-  - Er is een aparte pagina voor festiavllen op een rij.
+  - Er is een aparte pagina voor festivallen op een rij.
   - bij klikken op de festival staan alle gelinkte artiesten.
 
 ## Planning van dit project
 
 ---
 
-Dit project zal worden gerealiseerd in 4 sprints van elk 1 week.
+Dit project zal worden gerealiseerd in 4 sprints van elk 1 dag.
 
 |  Sprint  | User Stories Af te Ronden |
 |----------|----------------------------------------------------------|

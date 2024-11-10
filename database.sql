@@ -59,3 +59,10 @@ CREATE TABLE IF NOT EXISTS genre (
     genre_description VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
     PRIMARY KEY (genre_id)
 );
+
+-- Tabel: biography
+CREATE TABLE IF NOT EXISTS biography (
+    biography_id INT PRIMARY KEY AUTO_INCREMENT,
+    artist_id INT,
+    full_biography TEXT
+);
