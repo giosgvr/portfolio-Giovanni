@@ -10,12 +10,10 @@ $countries = $artist->getartistcountries();
 ?>
 
 <html>
-
 <head>
     <title>Voeg Artiest toe</title>
     <link rel="stylesheet" href="selchange_artist.css">
 </head>
-
 <body>
     <h1>Voeg Artiest toe</h1>
     <form method="post" action="add_artist.php">
@@ -31,21 +29,19 @@ $countries = $artist->getartistcountries();
                 <option value="<?php echo $genre['genre_id']; ?>"><?php echo $genre['genre_name']; ?></option>
             <?php endforeach; ?>
         </select>
-        <label for="artist_country_id">land:</label>
+        <label for="artist_country_id">Land:</label>
         <select name="artist_country_id" required>
             <?php foreach ($countries as $country) : ?>
                 <option value="<?php echo $country['Country_ID']; ?>"><?php echo $country['Country_Name']; ?></option>
             <?php endforeach; ?>
         </select>
         <br>
-        <label for="artist_spotify_id">Spotify Uri:</label>
-        <textarea name="artist_spotify_id" rows="4" required></textarea>
+        <label for="artist_spotify_id">Spotify URI:</label>
+        <textarea name="artist_spotify_id" rows="1" placeholder="Bijv. spotify:artist:6zEaCvF0CqEHs7kFyBkLHi" required></textarea>
         <br>
         <input type="submit" value="Voeg Toe">
     </form>
-
     <a href="selchange_artist.php"><button>Terug</button></a>
-
 </body>
-
 </html>
+
