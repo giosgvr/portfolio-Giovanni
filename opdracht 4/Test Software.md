@@ -139,14 +139,7 @@ Controleren of de functionaliteit om artiestinformatie via de Spotify API op te 
 
 ---
 
-### Scenario 3: Foutafhandeling bij API-problemen
-| **Stap** | **Actie**                     | **Testdata**          | **Verwacht resultaat**                                |
-|----------|-------------------------------|-----------------------|------------------------------------------------------|
-| 1        | Simuleer een fout van de Spotify API | 500 Internal Server Error | De applicatie toont melding: "Kan momenteel geen artiestinformatie ophalen. Probeer het later opnieuw." |
-
----
-
-### Scenario 4: Controle op API-limieten
+### Scenario 3: Controle op API-limieten
 | **Stap** | **Actie**                     | **Testdata**          | **Verwacht resultaat**                                |
 |----------|-------------------------------|-----------------------|------------------------------------------------------|
 | 1        | Verstuur meerdere API-verzoeken binnen korte tijd | 10+ verzoeken        | De applicatie pauzeert en toont melding: "API-limiet bereikt." |
@@ -161,8 +154,7 @@ Controleren of de functionaliteit om artiestinformatie via de Spotify API op te 
 | **Alternatief scenario 1: Voer een onvolledige URI in**     | Geslaagd          | Correcte foutmelding weergegeven. "Ongeldige URI of artiest niet gevonden. Probeer opnieuw "                                  |
 | **Alternatief scenario 2: Artiest heeft geen albums of singles**     | Niet geslaagd          | Artiest word geverifieerd en toegevoegd ook als er geen albums en/of singles op de pagina zijn.                                  |
 | **Scenario 2: Geen resultaten**     | Geslaagd          | Lege dataset correct afgehandeld met melding.                                  |
-| **Scenario 3: API-problemen**       | Geslaagd          | Correcte foutmelding weergegeven bij API-fouten.                              |
-| **Scenario 4: API-limieten**        | Niet geslaagd     | limietoverschrijding komt niet naar voren. er kunnen meerdere verzoeken binnen 30 seconden worden gedaan waardoor het niet mogelijk is door het programma te laten vastlopen. |
+| **Scenario 3: API-limieten**        | Niet geslaagd     | limietoverschrijding komt niet naar voren. er kunnen meerdere verzoeken binnen 30 seconden worden gedaan waardoor het niet mogelijk is door het programma te laten vastlopen. |
 
 ---
 
@@ -173,3 +165,4 @@ Controleren of de functionaliteit om artiestinformatie via de Spotify API op te 
 
 ---
 ---
+
