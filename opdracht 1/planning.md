@@ -99,7 +99,7 @@ Dit project zal worden ontwikkeld met de volgende technieken:
   - Basis informatie zoals titel, releasedatum en aantal tracks is zichtbaar.
 
 ### 5. Detailweergave Album/Single
-- **Prioriteit:** Gemiddeld
+- **Prioriteit:** laag
 - **Tijdsindicatie:** 6 uur
 - **Wie:** Als gebruiker,
 - **Wat:** Wil ik kunnen doorklikken naar een detailpagina van een album of single,

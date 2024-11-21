@@ -17,7 +17,7 @@ Controleren of de functionaliteit om een Spotify URI in te voeren werkt zoals be
 ## Scenario’s om te testen
 1. Een geldige URI invoeren.
 2. Een ongeldige URI invoeren.
-3. Een leeg invoerveld verzenden.
+3. Overload API requests.
 
 
 ---
@@ -52,10 +52,10 @@ Controleren of de functionaliteit om een Spotify URI in te voeren werkt zoals be
 
 ---
 
-## Scenario 3: Leeg invoerveld verzenden
+## Scenario 3: Overload API requests
 | **Stap** | **Actie**                     | **Testdata**          | **Verwacht resultaat**                                |
 |----------|-------------------------------|-----------------------|------------------------------------------------------|
-| 1        | Laat het invoerveld leeg      | -                     | Een foutmelding verschijnt: "Het invoerveld mag niet leeg zijn." |
+| 1        | doe 50+ api requests per seconde     | -                     | Een foutmelding verschijnt: "HTTP 429-statuscode " |
 
 ---
 
@@ -67,7 +67,7 @@ Controleren of de functionaliteit om een Spotify URI in te voeren werkt zoals be
 | **Alternatief scenario 1: Voer een onvolledige URI in**|  Geslaagd      | Correcte foutmelding weergegeven. "Ongeldige URI of artiest niet gevonden. Probeer opnieuw ".                     |
 | **Alternatief scenario 2: doe een verzoek zonder netwerkverbinding**|  Geslaagd      | Correcte foutmelding weergegeven. "Geen netwerkverbinding beschikbaar."                     |
 | **Scenario 2: Ongeldige URI invoeren**|  Geslaagd      | Correcte foutmelding weergegeven. Geen API-aanroep gedaan.                     |
-| **Scenario 3: Leeg invoerveld verzenden**|  Geslaagd     | Correcte foutmelding weergegeven. "Het invoerveld mag niet leeg zijn."                              |
+| **Scenario 3: Overload PI requests**|  Geslaagd     | Correcte foutmelding weergegeven. statuscode: "HTTP 429-statuscode".                              |
 
 ## Conclusie
 - De functionaliteit voor invoer van een Spotify URI werkt zoals bedoeld. 
@@ -152,7 +152,7 @@ Controleren of de functionaliteit om artiestinformatie via de Spotify API op te 
 |-------------------------------------|-------------------|---------------------------------------------------------------------------------|
 | **Scenario 1: Geldige URI**         | Geslaagd          | API retourneert correcte artiestinformatie en parsing is succesvol.            |
 | **Alternatief scenario 1: Voer een onvolledige URI in**     | Geslaagd          | Correcte foutmelding weergegeven. "Ongeldige URI of artiest niet gevonden. Probeer opnieuw "                                  |
-| **Alternatief scenario 2: Artiest heeft geen albums of singles**     | Niet geslaagd          | Artiest word geverifieerd en toegevoegd ook als er geen albums en/of singles op de pagina zijn.                                  |
+| **Alternatief scenario 2: Artiest heeft geen albums of singles**     | Geslaagd          | Een melding verschijnt: "Geen albums en singles beschikbaar."                                 |
 | **Scenario 2: Geen resultaten**     | Geslaagd          | Lege dataset correct afgehandeld met melding.                                  |
 | **Scenario 3: API-limieten**        | Niet geslaagd     | limietoverschrijding komt niet naar voren. er kunnen meerdere verzoeken binnen 30 seconden worden gedaan waardoor het niet mogelijk is door het programma te laten vastlopen. |
 
@@ -165,4 +165,104 @@ Controleren of de functionaliteit om artiestinformatie via de Spotify API op te 
 
 ---
 ---
+
+# Testplan: Database Opslag & Artiestoverzicht Weergeven
+
+
+## User Story
+- **Wie:** Als systeem,  
+- **Wat:** Wil ik de opgehaalde artiestinformatie opslaan in de SQL database,  
+- **Waarom:** Om de gegevens persistent te maken en snel te kunnen ophalen.
+
+## User Story
+- **Wie:** Als gebruiker,  
+- **Wat:** Wil ik een overzichtelijke weergave zien van alle albums en singles van de artiest,  
+- **Waarom:** Om snel inzicht te krijgen in de discografie van de artiest.
+
+
+---
+
+## Doel van de test
+Controleren of de functionaliteit voor het opslaan van artiestinformatie in de SQL database werkt zoals bedoeld, inclusief weergeven van de artiesteninfo op de pagina:
+- Juistheid van het databaseschema.
+- Correcte opslag van alle relevante gegevens.
+- Preventie van dubbele entries.
+- Chronologische weergave van de discografie.  
+- Correcte weergave van basisinformatie (titel, releasedatum, aantal tracks).  
+- Responsiviteit en consistentie in de interface. 
+---
+
+## Gerelateerde user stories
+- **Artiestinformatie Ophalen:** Verifieert dat de opgehaalde artiestinformatie correct is voordat deze wordt opgeslagen.
+- **Spotify URI Invoer:** Verifieert dat de invoer van een geldige URI resulteert in een correcte weergave.  
+
+---
+
+## Scenario’s om te testen
+1. Correcte opslag van een complete dataset.
+2. Opslag van een onvolledige dataset.
+3. Dubbele invoer voorkomen.
+4. Correcte weergave van een complete discografie.  
+5. Geen albums of singles beschikbaar.  
+
+---
+
+## Testscenario’s: Database Opslag & Artiestoverzicht Weergeven
+
+### Scenario 1: Correcte opslag van een complete dataset
+| **Stap** | **Actie**                     | **Testdata**                           | **Verwacht resultaat**                                |
+|----------|-------------------------------|----------------------------------------|------------------------------------------------------|
+| 1        | Ontvang een complete dataset  | JSON met volledige artiestinformatie   | Alle gegevens worden correct opgeslagen in de database. |
+| 2        | Controleer de database        | SQL-query                              | De gegevens zijn aanwezig en voldoen aan het schema. |
+
+---
+
+### Alternatief scenario 1: dubbele invoer van artiest bij een festival
+| **Stap** | **Actie**                     | **Testdata**                           | **Verwacht resultaat**                                |
+|----------|-------------------------------|----------------------------------------|------------------------------------------------------|
+| 1        | Voeg dezelfde artiest twee keer toe aan een festival | Sql-query         | een artiest kan niet 2x worden toegevoegd aan een festival.       |
+| 2        | Controleer de database         | SQL-query                              | Database bevat data zonder fouten. |
+
+---
+
+### Alternatief scenario 2: Dubbele invoer voorkomen
+| **Stap** | **Actie**                     | **Testdata**                           | **Verwacht resultaat**                                |
+|----------|-------------------------------|----------------------------------------|------------------------------------------------------|
+| 1        | Voeg dezelfde artiest twee keer toe | JSON met dezelfde artiestinformatie | De database weigert dubbele invoer en voorkomt duplicaten. |
+| 2        | Controleer de database         | SQL-query                              | Slechts een entry is opgeslagen.                    |
+
+---
+
+### Scenario 2: Correcte weergave van een complete discografie
+| **Stap** | **Actie**                     | **Testdata**                           | **Verwacht resultaat**                                |
+|----------|-------------------------------|----------------------------------------|------------------------------------------------------|
+| 1        | Haal discografie op            | Artiest met albums en singles          | Albums en singles worden chronologisch weergegeven. |
+| 2        | Controleer weergegeven gegevens | JSON met titel, releasedatum, aantal tracks | Alle gegevens worden correct weergegeven.           |
+
+---
+
+### Scenario 3: Geen albums of singles beschikbaar
+| **Stap** | **Actie**                     | **Testdata**                           | **Verwacht resultaat**                                |
+|----------|-------------------------------|----------------------------------------|------------------------------------------------------|
+| 1        | Haal discografie op            | Artiest zonder albums of singles       | Een melding verschijnt: "Geen albums en singles beschikbaar." |
+| 2        | Controleer gebruikerservaring | -                                      | De interface blijft consistent en overzichtelijk.    |
+
+---
+
+# Testrapport: Database Opslag & Artiestoverzicht Weergeven
+
+| **Testcase**                            | **Resultaat**     | **Opmerkingen**                                                                 |
+|-----------------------------------------|-------------------|---------------------------------------------------------------------------------|
+| **Scenario 1: Correcte opslag**         | Geslaagd          | Alle gegevens worden correct en volledig opgeslagen.                           |
+| **Alternatief scenario 1: dubbele invoer van artiest bij een festival**     | Geslaagd          | een artiest kan niet 2x worden toegevoegd aan een festival.                   |
+| **Alternatief scenario 2: Dubbele invoer**          | Niet geslaagd          | Dubbele entries worden niet correct voorkomen en kunnen alsnog voorkomen.                                      |
+| **Scenario 2: Complete discografie**    | Niet geslaagd          | Albums worden correct chronologisch weergegeven met alle benodigde informatie, maar singles heb ik weggelaten.           |
+| **Scenario 3: Geen albums/singles**     | Geslaagd          | Correcte melding weergegeven, "Geen albums gevonden voor deze artiest".                 |
+
+---
+
+## Conclusie
+- De functionaliteit voor database-opslag werkt zoals bedoeld. 
+- Bijna alle scenario’s tonen aan dat de applicatie correct omgaat met complete en incomplete datasets, dubbele invoer, en foutomstandigheden. alleen moet er nog een aanpassing worden gemaakt zodat er geen dubbele artiesten worden opgeslagen en er ook singles kunnen worden weergegeven in plaats van alleen albums.
+- **Samenhang met andere user stories:** De opgeslagen artiestinformatie is essentieel voor snelle en consistente weergave in andere onderdelen van de applicatie.
 
