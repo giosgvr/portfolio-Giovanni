@@ -84,7 +84,7 @@ $linked_artists = $festival->getlinkedartists($festival_id);
         <select name="artist_id" id="artist_id">
             <?php
             $artists = $artistquery->getallartists();
-            
+
             foreach ($artists as $artist) {
                 echo "<option value='" . $artist['artist_id'] . "'>" . $artist['artist_name'] . "</option>";
             }
